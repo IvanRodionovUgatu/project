@@ -1,5 +1,5 @@
 #include <iostream>
 
 int main() {
-  std::cout << 7;
+  std::cout << 8;
 }
