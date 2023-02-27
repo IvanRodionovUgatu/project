@@ -1,5 +1,5 @@
 #include <iostream>
 
 int main() {
-  std::cout << 13;
+  std::cout << "Pull request";
 }
