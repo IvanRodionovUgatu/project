@@ -2,7 +2,6 @@
 
 void Rational::Reduce() {
   int gcd = std::gcd(p_, q_);
-
   p_ /= gcd;
   q_ /= gcd;
 
