@@ -10,6 +10,7 @@ class RationalDivisionByZero : public std::exception {};
 
 class Rational {
  private:
+
   int p_ = 1;
   int q_ = 1;
   void Reduce();
