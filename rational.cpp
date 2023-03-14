@@ -166,29 +166,25 @@ bool operator>=(const Rational& first, const Rational& second) {
   return !(first < second);
 }
 
-void Rational::ReducePublic() {
-  Reduce();
-}
-
 std::istream& operator>>(std::istream& in, Rational& first) {
   char s[50];
   in >> s;
   int p = 0, q = 0;
   int len = strlen(s);
-  bool fl_p = false;
-  bool fl_zn = false;
+  bool checking_number_for_fraction = false;
+  bool fl_checking_number_for_sign = false;
   int i = 0;
 
   if (s[0] == '+') {
     ++i;
   } else if (s[0] == '-') {
     ++i;
-    fl_zn = true;
+    fl_checking_number_for_sign = true;
   }
 
-  for (; i < len; ++i) {
+  while (i < len) {
     if (s[i] == '/') {
-      fl_p = true;
+      checking_number_for_fraction = true;
 
       if (s[i + 1] == '+') {
         i += 2;
@@ -200,28 +196,26 @@ std::istream& operator>>(std::istream& in, Rational& first) {
       }
     }
 
-    if (!fl_p) {
+    if (!checking_number_for_fraction) {
       p = p * 10 + int(s[i]) - 48;
-    }
-
-    if (fl_p) {
+    } else {
       q = q * 10 + int(s[i]) - 48;
     }
+
+    ++i;
   }
 
-  if (fl_zn) {
+  if (fl_checking_number_for_sign) {
     p = -p;
   }
 
-  if (!fl_p) {
+  if (!checking_number_for_fraction) {
     first.SetNumerator(p);
     first.SetDenominator(1);
   } else {
     first.SetNumerator(p);
     first.SetDenominator(q);
   }
-
-  first.ReducePublic();
   return in;
 }
 

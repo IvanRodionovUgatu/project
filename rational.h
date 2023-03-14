@@ -12,6 +12,7 @@ class Rational {
  private:
   int p_ = 1;
   int q_ = 1;
+
   void Reduce();
 
  public:
@@ -35,8 +36,6 @@ class Rational {
 
   Rational operator+() const;
   Rational operator-() const;
-
-  void ReducePublic();
 };
 
 Rational operator+(const Rational& first, const Rational& other);
