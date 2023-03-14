@@ -9,12 +9,6 @@
 class RationalDivisionByZero : public std::exception {};
 
 class Rational {
- private:
-  int p_ = 1;
-  int q_ = 1;
-
-  void Reduce();
-
  public:
   Rational(int p = 0, int q = 1);  // NOLINT
   Rational(const Rational& r);
@@ -36,6 +30,12 @@ class Rational {
 
   Rational operator+() const;
   Rational operator-() const;
+
+ private:
+  int p_ = 1;
+  int q_ = 1;
+
+  void Reduce();
 };
 
 Rational operator+(const Rational& first, const Rational& other);
