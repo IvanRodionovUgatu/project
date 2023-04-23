@@ -3,9 +3,11 @@
 
 size_t Strlen(const char* str) {
   size_t len = 0;
+
   while (*str++) {
     ++len;
   }
+
   return len;
 }
 
@@ -87,43 +89,49 @@ const char* Strchr(const char* str, char symbol) {
 
 const char* Strrchr(const char* str, char symbol) {
   const char* last_occurrence = nullptr;
+
   while (*str) {
     if (*str == symbol) {
       last_occurrence = str;
     }
     ++str;
   }
-  if (symbol == '\0') {
-    return str;
-  }
-  return last_occurrence;
+
+  return (symbol == '\0') ? str : last_occurrence;
 }
 
 size_t Strspn(const char* dest, const char* src) {
   size_t count = 0;
+
   while (*dest && Strchr(src, *dest)) {
     ++count;
     ++dest;
   }
+
   return count;
 }
 
 size_t Strcspn(const char* dest, const char* src) {
   size_t count = 0;
+
   while (*dest && !Strchr(src, *dest)) {
     ++count;
     ++dest;
   }
+
   return count;
 }
 
 const char* Strpbrk(const char* dest, const char* breakset) {
   while (*dest) {
+
     if (Strchr(breakset, *dest)) {
       return dest;
     }
+
     ++dest;
   }
+
   return nullptr;
 }
 
@@ -136,9 +144,12 @@ const char* Strstr(const char* str, const char* pattern) {
   }
 
   for (size_t i = 0; i + pattern_len <= str_len; i++) {
+
     if (Strncmp(str + i, pattern, pattern_len) == 0) {
       return str + i;
     }
+
   }
+
   return nullptr;
 }
